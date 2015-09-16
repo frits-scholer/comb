@@ -7,7 +7,7 @@ template<class T> struct print : public unary_function<T, void>
   print(ostream& out) : os(out), count(0) {}
   void operator() (T x) { os << x << ' '; ++count; }
   ostream& os;
-  int count;
+  int count;//a printer that counts
 };
 
 int main()
