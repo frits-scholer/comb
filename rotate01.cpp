@@ -4,6 +4,6 @@
 using namespace std;
 int main() {
 char alpha[] = "abcdefghijklmnopqrstuvwxyz";
-rotate(alpha, alpha + 13, alpha + 16);
+rotate(alpha, alpha + 13, alpha + 26);
  cout << string{alpha} << endl;
 }
