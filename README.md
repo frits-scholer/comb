@@ -1,2 +1,0 @@
-# comb
-combinatorial
