@@ -32,11 +32,12 @@ int main() {
   for (gfi =  genfunc.begin(); gfi < genfunc.end(); gfi += *ci) {
     *gfi = 1;
   }
-  print(genfunc.begin(), genfunc.end());
+  //  print(genfunc.begin(), genfunc.end());
   for (++ci;ci != coins.end(); ++ci) {
     for (gfi =  genfunc.begin()+(*ci); gfi < genfunc.end(); ++gfi) {
       *gfi += *(gfi-*ci);
     }
-    print(genfunc.begin(), genfunc.end());
+    //    print(genfunc.begin(), genfunc.end());
   }
+    cout << genfunc[amount] << endl;
 }

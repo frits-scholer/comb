@@ -10,6 +10,6 @@ int main() {
   istreambuf_iterator<char> eos;
   string line(ii,eos);
   cout << line << endl;
-  } while (cin.peek() != EOF);
+  } while (cin.peek() != cin.eof());
   return !cin && !cout;
 }
