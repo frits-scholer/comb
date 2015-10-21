@@ -6,14 +6,14 @@
 #include <algorithm>
 #include <functional>
 using namespace std;
-
+/*
 template <class I>
 void print(I first, I last) {
   ostream_iterator<int> oi(cout, " ");
   copy(first, last, oi);
   cout << endl;
 }
-
+*/
 struct wave {
   int length;
   int current;
@@ -35,7 +35,6 @@ int main() {
   cin >> amount;
   vector<int> genfunc(amount+1);
   vector<int>::iterator ci = coins.begin();
-  vector<int>::iterator gfi;
   generate(genfunc.begin(), genfunc.end(), wave(*ci));
   //  print(genfunc.begin(), genfunc.end());
   for (++ci;ci != coins.end(); ++ci) {
