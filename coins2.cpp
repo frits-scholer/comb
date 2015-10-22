@@ -4,17 +4,25 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <functional>
 using namespace std;
-
+/*
 template <class I>
 void print(I first, I last) {
   ostream_iterator<int> oi(cout, " ");
   copy(first, last, oi);
   cout << endl;
 }
+*/
+struct wave {
+  int length;
+  int current;
+  wave(int l):length(l), current(0) {}
+  int operator()() { return (current++ % length == 0);}
+};
 
 int main() {
-  cout << "Enter values of different coins\n";
+  cout << "Enter values of different coins:\n";
   string strCoins;
   getline(cin, strCoins);
   stringstream iss(strCoins);
@@ -22,22 +30,17 @@ int main() {
   istream_iterator<int> eos;
   vector<int> coins(ii, eos);
   sort(coins.begin(), coins.end());
-  print(coins.begin(), coins.end());
-  cout << "Enter amount in cents\n";
+  cout << "Enter amount in cents:\n";
   int amount;
   cin >> amount;
   vector<int> genfunc(amount+1);
   vector<int>::iterator ci = coins.begin();
-  vector<int>::iterator gfi;
-  for (gfi =  genfunc.begin(); gfi < genfunc.end(); gfi += *ci) {
-    *gfi = 1;
-  }
+  generate(genfunc.begin(), genfunc.end(), wave(*ci));
   //  print(genfunc.begin(), genfunc.end());
   for (++ci;ci != coins.end(); ++ci) {
-    for (gfi =  genfunc.begin()+(*ci); gfi < genfunc.end(); ++gfi) {
-      *gfi += *(gfi-*ci);
-    }
+    transform(genfunc.begin()+(*ci), genfunc.end(), genfunc.begin(),
+	      genfunc.begin()+(*ci), plus<int>());
     //    print(genfunc.begin(), genfunc.end());
   }
-    cout << genfunc[amount] << endl;
+  cout << "There are " << genfunc[amount] << " ways to pay this amount." << endl;
 }

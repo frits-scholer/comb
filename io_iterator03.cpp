@@ -5,11 +5,12 @@
 using namespace std;
 
 int main() {
+  cin >> noskipws;
   do {
-  istreambuf_iterator<char> ii(cin);
-  istreambuf_iterator<char> eos;
+  istream_iterator<char> ii(cin);
+  istream_iterator<char> eos;
   string line(ii,eos);
   cout << line << endl;
-  } while (cin.peek() != cin.eof());
+  } while (cin.peek() != EOF);
   return !cin && !cout;
 }
