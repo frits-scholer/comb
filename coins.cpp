@@ -16,6 +16,8 @@ int main() {
   for (int i = 1; i < M; i++) {
     for (int j = 1; j < C[i]; j++) dp[i][j] = dp[i-1][j];
     for (int j = C[i]; j <= N; j++)
+      //all the ways to change j with i-1 coin types
+      //and all the ways to change j minus value of the ith coin type
       dp[i][j] = dp[i-1][j] + dp[i][j-C[i]];
   }
   //ways to change N with M coin types 
