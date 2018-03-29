@@ -1,10 +1,10 @@
+#include <iostream>
+#include <vector>
+using namespace std;
 struct FenwickTree2D {
-    vector<vector<int> > a;
     int n, m;
- 
-    FenwickTree2D(int n, int m) : n(n), m(m), a(n, vector<int>(m)) {
- 
-    }
+    vector<vector<int> > a;
+    FenwickTree2D(int n, int m) : n(n), m(m), a(n, vector<int>(m)) {}
  
     void update(int x, int y, int val) {
         int y1;
@@ -41,3 +41,11 @@ struct FenwickTree2D {
         return re;
     }
 };
+int main() {
+  FenwickTree2D t(3,4);
+  vector<vector<int>> b = {{1,2,3,4},{2,3,4,5},{3,4,5,6}};
+  for (int i=0;i<t.n;i++)
+    for (int j=0;j<t.m;j++) t.update(i, j, b[i][j]);
+  cout << t.get(1,3) << endl;
+    
+}
