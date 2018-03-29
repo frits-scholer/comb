@@ -1,0 +1,36 @@
+A 2D BIT uses a 2D array to store values. Just as each index in a 1D BIT stores the cumulative sum of
+a particular sub-array, similarly, each index in a 2D BIT stores the cumulative sum of a particular sub-
+matrix. For example, the index (8, 8) stores the cumulative sum of all elements in the range [1, 1 : 8, 8],
+i.e., rsum(1, 1 : 8, 8). Similarly, index (6, 4) stores rsum(5, 1 : 6, 4), and so on. It can be observed that
+a 2D BIT can be treated as a BIT of 1D BITs. Throughout this paper, we use updatep(bit, (x, y), c) to
+denote a point-update operation on 2D BIT named bit, which adds constant c to the element at position
+(x, y). Similarly, we use queryr(bit, (x, y)) to denote the operation which returns rsum(1, 1 : x, y).
+Further using the inclusion-exclusion principle, any sub-matrix can be queried.
+For clarity, we present pseudocodes for updatep(bit, (x, y), c) and queryr(bit, (x, y)) operations on a 2D
+BIT of side-length n:
+Point-update on 2D BIT
+1: function updatep (bit, (x, y), c)
+2: i ← x
+3: while i ≤ n do
+4: j ← y
+5: while j ≤ n do
+6: bit[i][j] ← bit[i][j] + c
+7: j ← j + bitAnd(j, −j)
+8: end while
+9: i ← i + bitAnd(i, −i)
+10: end while
+11: end function
+
+1: function queryr (bit, (x, y))
+2: sum ← 0
+3: i ← x
+4: while i > 0 do
+5: j ← y
+6: while j > 0 do
+7: sum ← sum + bit[i][j]
+8: j ← j − bitAnd(j, −j)
+9: end while
+10: i ← i − bitAnd(i, −i)
+11: end while
+12: return sum
+13: end function
