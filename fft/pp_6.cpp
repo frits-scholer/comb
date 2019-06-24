@@ -16,7 +16,7 @@ typedef vector<pii> vii;
 #define sz(c) (int)(c).size()
 #define all(c) (c).begin(), (c).end()
 
-const int mod = 7340033;
+const int mod = 1e9+7;//7340033;
 
 int mult (int a, int b)
 {

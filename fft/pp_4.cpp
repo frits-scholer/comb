@@ -153,7 +153,7 @@ int solve(int n, int a, int b, int c) {
     y[i] = fac[b] * mpow(fac[i] * (ll)fac[b-i] % mod, mod-2, mod) % mod;
   }
   vi z = fmul(x, y);
-//  out(x); out(y); out(z);
+  out(x); out(y); out(z);
   for (int i = 0; i < z.size(); ++i) {
     int pw = c - a - b + 2 * i;
     res = (res + z[i] * mpow(pw, n, mod)) % mod;
