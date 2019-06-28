@@ -14,7 +14,7 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef complex < double > base ;
 const double PI = 4*atan(1);
-const int M = 3;
+const int M = 10;
 const int MAXN = 1<<M;
 const int mod = 1e9+7;
 template <typename I>
@@ -87,7 +87,7 @@ void fft ( vector < base > & a, bool invert ) {
 	}
 	if ( invert )
 		for ( int i = 0 ; i < n ; ++ i )
-			a [ i ] /= n ;
+		  a[i].real ( mult((int)((ll)(a[i].real()+0.5)%mod), inverse(n))) ;
 }
 
 void multiply ( const vector < int > & a, const vector < int > & b, vector < int > & res ) {
@@ -104,8 +104,7 @@ void multiply ( const vector < int > & a, const vector < int > & b, vector < int
  
 	res. resize ( n ) ;
 	for ( size_t i = 0 ; i < n ; ++ i ) {
-	    res [ i ] = int ( fa [ i ] . real ( ) + 0.5 ) ;
-	    res[i] %= mod;
+	  res [ i ] =  fa[i].real();
 	}
 }
 
@@ -118,12 +117,11 @@ void print(const vi& v, const string& s) {
 int main() {
   pre();
   vi A;
-  REP(i,6) A.PB(invfact[i]);
-  vi B {1,1,1,1,1};
+  REP(i,6) A.PB(1);
+  vi B {1,0,0,0,0,0};
   vi C;
   multiply(A, A, C);
   print(A, "A:");
-  //print(B, "B:");
   print(C, "C:");
   REP(i,sz(C)) cout << mult(C[i], factorial[i]) << ' ';
   cout << endl;
