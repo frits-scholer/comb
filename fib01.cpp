@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-  vector<unsigned long> v(2,1);
+  vector<unsigned long> v(1,1);
   cout << "How many Fibonacci numbers do you want? ";
   int N;
   cin >> N;

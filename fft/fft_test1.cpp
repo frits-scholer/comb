@@ -176,11 +176,12 @@ void print(const vi& v, const string& s) {
   cout << endl;
 }
 int main() {
-  vi A {1,2,6,24,120};
-  vi B {1,1,1,1,1};
+  //pre();
+  vi A {1,1,2,6,24,120};
   vi C;
-  multiply(A, B, C);
+  multiply(A, A, C);
   print(A, "A:");
-  print(B, "B:");
   print(C, "C:");
+  //  REP(i,sz(C)) cout << C[i] << ' ';
+  cout << endl;
 }

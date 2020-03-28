@@ -1,3 +1,6 @@
+/*
+correct fft if no overflow
+ */
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -87,7 +90,7 @@ void fft ( vector < base > & a, bool invert ) {
 	}
 	if ( invert )
 		for ( int i = 0 ; i < n ; ++ i )
-		  a[i].real ( mult((int)((ll)(a[i].real()+0.5)%mod), inverse(n))) ;
+			a [i] /= n ;
 }
 
 void multiply ( const vector < int > & a, const vector < int > & b, vector < int > & res ) {
@@ -104,7 +107,8 @@ void multiply ( const vector < int > & a, const vector < int > & b, vector < int
  
 	res. resize ( n ) ;
 	for ( size_t i = 0 ; i < n ; ++ i ) {
-	  res [ i ] =  fa[i].real();
+	  res [ i ] =  fa[i].real()+0.5;
+	  res[i] %= mod;
 	}
 }
 
@@ -117,11 +121,14 @@ void print(const vi& v, const string& s) {
 int main() {
   pre();
   vi A;
-  REP(i,6) A.PB(1);
-  vi B {1,0,0,0,0,0};
+  //REP(i,6) A.PB(invfact[i]);
+  REP(i,3) A.PB(i+1);
+  
   vi C;
   multiply(A, A, C);
   print(A, "A:");
+  REP(i,sz(A)) cout << mult(A[i], factorial[i]) << ' ';
+  cout << endl;
   print(C, "C:");
   REP(i,sz(C)) cout << mult(C[i], factorial[i]) << ' ';
   cout << endl;
