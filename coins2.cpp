@@ -6,14 +6,14 @@
 #include <algorithm>
 #include <functional>
 using namespace std;
-/*
+
 template <class I>
 void print(I first, I last) {
   ostream_iterator<int> oi(cout, " ");
   copy(first, last, oi);
   cout << endl;
 }
-*/
+
 struct wave {
   int length;
   int current;
@@ -36,11 +36,11 @@ int main() {
   vector<int> genfunc(amount+1);
   vector<int>::iterator ci = coins.begin();
   generate(genfunc.begin(), genfunc.end(), wave(*ci));
-  //  print(genfunc.begin(), genfunc.end());
+  print(genfunc.begin(), genfunc.end());
   for (++ci;ci != coins.end(); ++ci) {
     transform(genfunc.begin()+(*ci), genfunc.end(), genfunc.begin(),
 	      genfunc.begin()+(*ci), plus<int>());
-    //    print(genfunc.begin(), genfunc.end());
+       print(genfunc.begin(), genfunc.end());
   }
   cout << "There are " << genfunc[amount] << " ways to pay this amount." << endl;
 }
